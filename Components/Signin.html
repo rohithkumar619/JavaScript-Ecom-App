@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Authentication</title>
+    <link rel="stylesheet" href="/styles//SignIn.css" />
+  </head>
+  <body>
+    <form id="loginForm" class="form">
+      <h2>Login</h2>
+
+      <input
+        type="text"
+        placeholder="Enter Username:"
+        id="username"
+        name="username"
+        required
+      /><br /><br />
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter Password:"
+        name="password"
+        required
+      /><br /><br />
+      <button type="submit">Login</button>
+      <br />
+      <button onclick="skip()">Skip</button>
+    </form>
+
+    <script>
+      const users = [
+        { username: "user1", password: "pass1" },
+        { username: "user2", password: "pass2" },
+        { username: "user3", password: "pass3" },
+      ];
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          const user = users.find(
+            (user) => user.username === username && user.password === password
+          );
+
+          if (user) {
+            window.location.href = "/Home.html";
+          } else {
+            alert("Invalid username or password");
+          }
+        });
+      function skip() {
+        window.location.href = "/Home.html";
+      }
+    </script>
+  </body>
+</html>
